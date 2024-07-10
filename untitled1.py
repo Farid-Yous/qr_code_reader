@@ -63,6 +63,7 @@ def template_matching(image_path, template_path, threshold=0.3):
         bottom_right = (x2, y2)
         cv2.rectangle(rotated_image, top_left, bottom_right, (0, 255, 0), 2)
         print(f"Bounding Box: Top-left: {top_left}, Bottom-right: {bottom_right}")
+        print("CHECK")
 
     cv2.imshow('Detected', rotated_image)
     cv2.waitKey(0)
