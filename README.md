@@ -19,7 +19,7 @@ QR Code Decoding: Extracts and decodes the QR code data after ensuring the corre
 # **Requirements**
 
 
-Python 3.x
+Python 3
 
 OpenCV
 
@@ -39,8 +39,9 @@ Place the template image, provided in this repository, in the same directory, an
 
 # **Processing**
 
-
+![Template Matching](Slide2.png)
 The template image (corner of a generic qr code) is scaled at different factors and by using the sliding window method over the target image, the sum of squared differences is calculated at each iteration and depending on the threshold level various matches will arise. By then using non maximal suppression to remove the overlapping matches and reduce them to singular matches, we then are left with 3 matches indicating the 3 corners we are looking for, then a rotation is applied to correct the rotation if necessary and then the image is decoded.
+
  
 
  
