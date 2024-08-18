@@ -19,7 +19,7 @@ QR Code Decoding: Extracts and decodes the QR code data after ensuring the corre
 # **Requirements**
 
 
-Python 3.x
+Python 3
 
 OpenCV
 
