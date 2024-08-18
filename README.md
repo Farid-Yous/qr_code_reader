@@ -40,11 +40,10 @@ Place the template image, provided in this repository, in the same directory, an
 # **Processing**
 
 
-The script will process the image by detecting features using template matching.
-If the QR code is rotated, the script will automatically rotate the image until the QR code is correctly oriented.
-Once the correct orientation is detected, the QR code will be decoded and the data will be printed.
+The template image (corner of a generic qr code) is scaled at different factors and by using the sliding window method over the target image, the sum of squared differences is calculated at each iteration and depending on the threshold level various matches will arise. By then using non maximal suppression to remove the overlapping matches and reduce them to singular matches, we then are left with 3 matches indicating the 3 corners we are looking for, then a rotation is applied to correct the rotation if necessary and then the image is decoded.
+ 
 
-
+ 
 # **Display**
 
 
