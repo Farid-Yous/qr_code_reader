@@ -65,31 +65,6 @@ template_matching(image, template_path, threshold): Performs template matching t
 non_max_suppression_fast(boxes, overlap_thresh): Applies non-maximum suppression to filter overlapping bounding boxes.
 
 
-# **Example**
-
-
-Here's an example of how the QR code reader works:
-
-Input Image: The initial image containing the QR code (cropped_qr.png).
-
-Template Image: A small corner of the QR code used for template matching (corner.png).
-
-Output: The processed image with the correct orientation and the decoded QR code data.
-
-# **Troubleshooting**
-
-
-Ensure that the template image is properly prepared and matches a recognizable feature in the QR code.
-
-Adjust the threshold parameter in the template_matching function if you're having trouble detecting matches.
-
-# **Future Improvements**
-
-
-Implement support for detecting and decoding multiple QR codes in a single image.
-
-Add error handling for various edge cases, such as low-quality images or very high rotation angles.
-
 
 # **Contact**
 If you have any questions or suggestions, feel free to contact Farid at farid.yous@ucdconnect.ie.
