@@ -5,6 +5,7 @@ import numpy as np
 
 is_rotated = 0  #global variable to determine if the image is correctly orientated
 
+    
 def decode_qr(image):    #pyzbars qr decoder used after rotating
     decoded = decode(image)
     for obj in decoded:
