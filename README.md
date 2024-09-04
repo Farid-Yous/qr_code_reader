@@ -38,8 +38,8 @@ Prepare your images:
 Place the image containing the QR code in the qrcodereader directory. Update the image_path in the script to point to your QR code image , or use the existing qr code that takes you to your email.
 
 # **Example Use**
-![image1]()
-![image2]()
+![image1](Screenshot 2024-09-04 131328.png)
+![image2](Screenshot 2024-09-04 131345.png)
 Image is taken in misaligned at a different rotation, program automatically detects the rotation, rerotates it accordingly, prints the bounding boxes of the 3 corners and outputs the qr code data in the console.
 
 # **Processing**
