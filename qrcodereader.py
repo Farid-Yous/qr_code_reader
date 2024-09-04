@@ -10,15 +10,17 @@ def decode_qr(image):    #pyzbars qr decoder used after rotating
     for obj in decoded:
         print('Type:', obj.type)
         print('Data:', obj.data.decode('utf-8'))
+    if decoded == None:
+        print("unable to decode qr code")
 
 def rotate_image(image, angle):  #function to rotate the image
     (h, w) = image.shape[:2]
     center = (w // 2, h // 2)
-    M = cv2.getRotationMatrix2D(center, angle, 1.0)
+    M = cv2.getRotationMatrix2D(center, angle,  1 )
     rotated_image = cv2.warpAffine(image, M, (w, h))
     return rotated_image
 
-def template_matching(image, template_path, threshold=1):   #template matching using sliding window method, difference of squares used at each iteration, dynamically adjusted threshold
+def template_matching(image, template_path, threshold=0.2):   #template matching using sliding window method, difference of squares used at each iteration, dynamically adjusted threshold
     global is_rotated
     print(f"Current threshold: {threshold}")  #debugging line
     
@@ -48,18 +50,19 @@ def template_matching(image, template_path, threshold=1):   #template matching u
             bottom_right = (int((pt[0] + template_width) * scale_factor**level), int((pt[1] + template_height) * scale_factor**level))
             best_matches.append((top_left, bottom_right))
 
-    if len(best_matches) == 0:  #no matches found
-        print("No matches found.")
-        if threshold > 0.1:
-            return template_matching(image, template_path, threshold - 0.1) #recursively adjusting the threshold level until matches are found
-        return image, is_rotated
 
     boxes = np.array([[x1, y1, x2, y2] for ((x1, y1), (x2, y2)) in best_matches])
     boxes = non_max_suppression_fast(boxes, 0.3)
-
-    if len(boxes) < 2:  #must be 3 matches in order to perform image alignment
-        print("Not enough matches found for angle calculation")
+    if len(boxes) == 0:  #no matches found
+        print("No matches found, adjusting threshold")        
+        if threshold > 0.1:
+            return template_matching(image, template_path, threshold - (0.1 * threshold) ) #recursively adjusting the threshold level until matches are found
         return image, is_rotated
+    if len(boxes) > 3:
+        print("too many matches , adjusting threshold")
+        print("number of matches -" , len(boxes))
+        return template_matching(image, template_path, threshold + (0.05 * threshold))
+
 
     for (x1, y1, x2, y2) in boxes:
         cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)  #drawing bounding boxes
