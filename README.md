@@ -9,6 +9,8 @@ the QR code is rotated.
 
 Template Matching: Identifies specific features in the image using a template and matches them to detect the position of the QR code.
 
+Dynamically Adjusting threshold: Automatically adjusts the threshold using recursion to find the optimal threshold for detection.
+
 Non-maximal Suppression: Reduces multiple matches in the same area to a single match by filtering largely overlapping bounding boxes.
 
 Rotation Detection: Automatically detects if the QR code is rotated and corrects the orientation before decoding.
@@ -33,9 +35,12 @@ Numpy
 
 Prepare your images:
 
-Place the image containing the QR code in the qrcodereader directory. Update the image_path in the script to point to your QR code image.
-Place the template image, provided in this repository, in the same directory, and update the template_path to point to your template image.
+Place the image containing the QR code in the qrcodereader directory. Update the image_path in the script to point to your QR code image , or use the existing qr code that takes you to your email.
 
+# **Example Use**
+![image1]()
+![image2]()
+Image is taken in misaligned at a different rotation, program automatically detects the rotation, rerotates it accordingly, prints the bounding boxes of the 3 corners and outputs the qr code data in the console.
 
 # **Processing**
 
